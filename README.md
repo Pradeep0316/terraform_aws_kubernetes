@@ -13,5 +13,7 @@
 8. Check the statuus by (kubectl get nodes )
 9. Run pods from busy box image ( kubectl run busybox --image=busybox --command --sleep 3600)
 10 check pods status ( kubectl get pods -l run=busybox)
+
+
 ---To cleanup---
 terraform destroy -auto-approve- (From /root/terraform_aws_kubernetes/)
