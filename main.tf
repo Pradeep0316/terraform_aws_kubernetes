@@ -4,7 +4,7 @@ provider "aws" {
 
 # Deploy Compute Resources
 module "compute_sources" {
-  source = "compute"
+  source = "./compute"
   availability_zone = "${var.region}"
   pubkey = "${var.pubkey}"
   vpc_security_group_id = "${module.security_groups.k8s_security_grp_id}"
@@ -16,13 +16,13 @@ module "compute_sources" {
 }
 
 module "networking" {
-  source = "networking"
+  source = "./networking"
   vpc_cidr = "${var.vpc_cidr}"
   subnet_cidr = "${var.subnet_cidr}"
 }
 
 module "security_groups" {
-  source = "secgroups"
+  source = "./secgroups"
   vpc_id = "${module.networking.vpc_id}"
   security_grp_name = "${var.k8s-security_grp_name}"
 }
