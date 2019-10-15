@@ -522,7 +522,7 @@ resource "aws_elb" "kubernetes-elb" {
   }
 
   depends_on = ["aws_s3_bucket.lb_logs"]
-  instances = ["${aws_instance.k8s_controllers.*.id}"]
+  instances = "${aws_instance.k8s_controllers.*.id}"
   /*
   health_check {
       healthy_threshold = 2
