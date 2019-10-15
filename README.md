@@ -2,7 +2,7 @@
 ----------------------Terraform_Kubernetes_AWS----------------------------
 
 ###Steps to follow
---Configure aws credentials---(Used us-east-1 region)
+--Configure aws credentials---(Used us-east-1 region & did everything from Ubuntu server)
 1. git clone 
 2. cd terraform_aws_kubernetes && cd compute 
 3. create a key pair with the name of terraform-keys2 (ssh-keygen -f terraform-keys2 )
