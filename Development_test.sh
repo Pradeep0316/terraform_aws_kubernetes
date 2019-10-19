@@ -16,7 +16,7 @@ sleep 2
 
 sudo mkdir -p /mnt/data
 
-sudo sh -c "echo 'Hello from Kubernetes storage' > /mnt/data/index.html"
+sudo sh -c "echo 'Hello from Kubernetes storage' > /mnt/data/index.html"     (Please create this step on worker nodes)
 
 echo "done-mnt"
 date
