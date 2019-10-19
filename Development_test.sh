@@ -10,10 +10,17 @@ cat <<EOF | kubectl apply -f -
   }
 }
 EOF
+echo "done-ns"
+date
+sleep 2
 
 sudo mkdir /mnt/data
 
 sudo sh -c "echo 'Hello from Kubernetes storage' > /mnt/data/index.html"
+
+echo "done-mnt"
+date
+sleep 2
 
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
@@ -32,6 +39,10 @@ spec:
     path: "/mnt/data"
 EOF
 
+echo "done-pv"
+date
+sleep 5
+
 cat <<EOF >> PVC.yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -45,6 +56,10 @@ spec:
     requests:
       storage: 1Gi
 EOF
+
+echo "done-pvc"
+date
+sleep 5
 
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
@@ -63,11 +78,15 @@ data:
     secret.code.lives=30
 EOF
 
+echo "done-cm"
+date
+sleep 5
+
 cat <<EOF | kubectl apply -f -
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-namespace: development
+  namespace: development
   name: nginx-deployment
 spec:
   replicas: 2
@@ -100,7 +119,7 @@ spec:
         - name: test-volume
           mountPath: /tmp/redis
         - name: task-pv-storage
-            mountPath: "/usr/share/nginx/html"
+          mountPath: "/usr/share/nginx/html"
       volumes:
       - name: test-volume
         configMap:
@@ -109,6 +128,10 @@ spec:
         persistentVolumeClaim:
           claimName: task-pv-claim
 EOF
+
+echo "done-dc"
+date
+sleep 2
 
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
@@ -128,3 +151,8 @@ spec:
   selector:
     app: nginx
 EOF
+
+echo "done-svc"
+date
+
+echo "All are completed!!. Please expose your service at http:<nodename>:30180"
