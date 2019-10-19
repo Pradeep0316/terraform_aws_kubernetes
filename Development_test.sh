@@ -14,7 +14,7 @@ echo "done-ns"
 date
 sleep 2
 
-sudo mkdir /mnt/data
+sudo mkdir -p /mnt/data
 
 sudo sh -c "echo 'Hello from Kubernetes storage' > /mnt/data/index.html"
 
