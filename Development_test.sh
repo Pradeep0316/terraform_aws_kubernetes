@@ -48,6 +48,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: task-pv-claim
+  namespace: development
 spec:
   storageClassName: manual
   accessModes:
