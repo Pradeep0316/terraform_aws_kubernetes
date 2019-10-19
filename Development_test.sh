@@ -43,7 +43,7 @@ echo "done-pv"
 date
 sleep 5
 
-cat <<EOF >> PVC.yaml
+cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
