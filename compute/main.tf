@@ -846,8 +846,8 @@ resource "null_resource" "kubemaster_provision" {
       sudo mv kube-apiserver kube-controller-manager kube-scheduler kubectl /usr/local/bin/
       sudo mkdir -p /var/lib/kubernetes/
 
-sudo cp ca.pem ca-key.pem kubernetes-key.pem kubernetes.pem \
-  service-account-key.pem service-account.pem \
+sudo cp ca.pem ca-key.pem kubernetes-key.pem kubernetes.pem  admin.kubeconfig \
+  service-account-key.pem service-account.pem kube-scheduler.kubeconfig kube-controller-manager.kubeconfig \
   encryption-config.yaml /var/lib/kubernetes/
   INTERNAL_IP=$(curl http://169.254.169.254/latest/meta-data/local-ipv4)
   CONTROLLER0_IP=${aws_instance.k8s_controllers.*.private_ip[0]}
