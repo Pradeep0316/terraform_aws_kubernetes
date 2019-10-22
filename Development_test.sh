@@ -14,23 +14,13 @@ echo "done-ns"
 date
 sleep 2
 
-sudo mkdir -p /mnt/data
-
-sudo sh -c "echo 'Hello from Kubernetes storage' > /mnt/data/index.html"     (Please create this step on worker nodes)
-
-echo "done-mnt"
-date
-sleep 2
 
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: task-pv-volume
-  labels:
-    type: local
 spec:
-  storageClassName: manual
   capacity:
     storage: 2Gi
   accessModes:
@@ -43,6 +33,7 @@ echo "done-pv"
 date
 sleep 5
 
+
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -50,12 +41,12 @@ metadata:
   name: task-pv-claim
   namespace: development
 spec:
-  storageClassName: manual
+  volumeName: task-pv-volume
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 2Gi
 EOF
 
 echo "done-pvc"
