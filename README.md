@@ -18,3 +18,10 @@
 
 ---To cleanup---
 terraform destroy -auto-approve- (From /root/terraform_aws_kubernetes/)
+
+
+Terraform packege
+
+wget https://releases.hashicorp.com/terraform/0.12.7/terraform_0.12.7_linux_amd64.zip
+unzip terraform_0.12.7_linux_amd64.zip
+sudo mv terraform /usr/local/bin/
